@@ -1,0 +1,22 @@
+.toolbar-item {
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.toolbar-item.circle {
+  background-color: rgb(241, 150, 150);
+  border-radius: 50%;
+}
+
+.toolbar-item.rect {
+  background-color: rgb(69, 142, 209);
+}
+
+.toolbar {
+  border: solid 1px gray;
+  margin: 10px;
+  padding: 5px;
+  display: flex;
+}
