@@ -1,11 +1,19 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { useDispatch, useSelector } from "react-redux";
+import { FileReadingActionTypes, FileReadingState } from "../../store/stateModel";
+import { fileReading } from "../../store/actions";
 
 const MenuToolBar: React.FC<any> = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const inputFile = React.useRef<HTMLInputElement>(null);
+
+  const store = useSelector<FileReadingState, FileReadingState>(
+    (state) => state,
+  );
+  const dispatch: Dispatch<FileReadingActionTypes> = useDispatch();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -22,30 +30,7 @@ const MenuToolBar: React.FC<any> = () => {
 
   const handleFileChange = (files: FileList) => {
     if(files.length) {
-      console.log(files[0]);
-      const fileReader = new FileReader();
-
-      fileReader.onloadend = (ev) => {
-        console.log("onloadend");
-        const buffer = fileReader.result as ArrayBuffer;
-        const stitches: number[] = [];
-        const int8View = new Int8Array(buffer);
-        int8View.forEach((byte, index) => { 
-        if(index % 3 === 0) {
-          const control = new Uint8Array(buffer, index, 1);
-          stitches.push(control[0]);
-        } else {
-          stitches.push(byte);
-        }
-        });
-        console.log(stitches);
-      };
-
-      fileReader.onerror = (ev) => {
-        console.log("onerror");
-      };
-
-      fileReader.readAsArrayBuffer(files[0]); 
+      dispatch(fileReading(files[0]));
     }  
   }
 

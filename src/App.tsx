@@ -1,19 +1,22 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import AppNavBar from './components/navigation/AppBar';
-import MenuToolBar from './components/toolbar/MenuToolBar';
-import ToolBar from './components/toolbar/ToolBar';
+// import ToolBar from './components/toolbar/ToolBar';
 import EmbroideryView from './components/views/EmbroideryView';
+import store from './store/store';
 
 function App() {
   return (
-    <div className="App">
-      <AppNavBar />
-      {/* <ToolBar /> */}
-      <EmbroideryView></EmbroideryView>
-      <div>
-        Status bar
+    <Provider store={store}>
+      <div className="App">
+        <AppNavBar />
+        {/* <ToolBar /> */}
+        <EmbroideryView></EmbroideryView>
+        <div>
+          Status bar
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
 
