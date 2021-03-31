@@ -41,6 +41,10 @@ export class Canvas {
     })  
   }
 
+  clear() {
+    this.canvas.clear()
+  }
+
   getimensions() {
     return this.canvasDimensions;
   }

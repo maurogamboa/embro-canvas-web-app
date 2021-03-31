@@ -47,11 +47,11 @@ export function fileReading(file: File) : ThunkAction<void, {}, {}, AnyAction> {
             y: new Int8Array(buffer, index + 2, 1)[0],
           });
         }        
-        console.log(stitches);
+        dispatch(fileSuccess(stitches));
       };
 
       fileReader.onerror = (ev) => {
-        dispatch(fileFailure('file read error'));;
+        dispatch(fileFailure('file read error'));
       };
 
       fileReader.readAsArrayBuffer(file); 
@@ -65,11 +65,12 @@ export function fileReading(file: File) : ThunkAction<void, {}, {}, AnyAction> {
 } 
 
 export function fileSuccess(
-  stiches: Stitch[]
+  stitches: Stitch[]
 ): FileReadingActionTypes {
+  console.log(stitches);
   return {
     type: FILE_SUCCESS,
-    payload: stiches,
+    payload: stitches,
   };
 }
 

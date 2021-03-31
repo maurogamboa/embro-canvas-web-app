@@ -3,10 +3,11 @@ import { CanvasGrid } from "../classes/CanvasGrid";
 import { CanvasRect } from "../classes/CanvasRect";
 import { CanvasCircle } from "../classes/CanvasCircle";
 import { ICanvasObject } from "../core/models/CanvasObject";
+import { CanvasStitches } from "../classes/CanvasStitches";
+import Stitch from "../core/models/Stitch";
 
 export class CanvasController {
   // private grid: CanvasGrid;
-
   constructor(protected canvas: Canvas) {
     //Add grid
     // this.grid = new CanvasGrid(canvas.getimensions())
@@ -46,6 +47,14 @@ export class CanvasController {
 
   addObject(obj: ICanvasObject) {
     this.canvas.addObject(obj);
+    console.log("Object added");
+  }
+
+  addStitchesObject(stitches: Stitch[]) {
+    this.addObject(new CanvasStitches(
+      this.canvas.getimensions(), 
+      stitches
+    ));
   }
 
   setDimensions(height: number, width: number) {

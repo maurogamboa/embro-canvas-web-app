@@ -19,7 +19,7 @@ export function reducerFileReading(
   switch (action.type) {
     case FILE_READING:
       return {
-        stitches: state.stitches,
+        stitches: undefined,
         loading: true,
         error: ""
       };

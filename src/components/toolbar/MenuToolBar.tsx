@@ -34,6 +34,10 @@ const MenuToolBar: React.FC<any> = () => {
     }  
   }
 
+  const onOpenClearDialog = () => {
+    handleClose();
+  }
+
   return (
     <React.Fragment>
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} color="inherit">
@@ -55,9 +59,9 @@ const MenuToolBar: React.FC<any> = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       >
-        <MenuItem onClick={onOpenFileDialog}>Open file</MenuItem>
+        <MenuItem onClick={onOpenFileDialog}>Insert file</MenuItem>
         <MenuItem onClick={handleClose}>Print</MenuItem>
-        <MenuItem onClick={handleClose}>Close</MenuItem>
+        <MenuItem onClick={onOpenClearDialog}>Clear All</MenuItem>
       </Menu>
       <input 
         type='file' 

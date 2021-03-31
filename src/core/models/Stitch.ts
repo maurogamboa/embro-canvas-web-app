@@ -8,6 +8,20 @@ export enum StitchControl {
   Cut = 0x98,
 }
 
+export function IsColorControl(control: number): boolean {
+  return (control >= 0xA0 && control <= 0xBF) || (control >= 0xE0) 
+}
+
+export function getColorIndex(control: number): number {
+  if (control >= 0xA0 && control <= 0xBF) {
+    return control - 0xA0; 
+  } else if(control >= 0xE0) {
+    return control - 0xE0; 
+  } else {
+    return -1;
+  }
+}
+
 export default interface Stitch {
   control: StitchControl,
   x: number
