@@ -1,3 +1,13 @@
 .canvas-container {
     margin: auto;
 }
+
+.area-canvas {
+    flex-grow: 1;
+    background-color: rgb(187, 187, 187);
+    position: relative;
+}
+
+.area-embroidery {
+    position: absolute;
+} 

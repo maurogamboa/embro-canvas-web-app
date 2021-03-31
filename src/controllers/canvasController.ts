@@ -5,17 +5,16 @@ import { CanvasCircle } from "../classes/CanvasCircle";
 import { ICanvasObject } from "../core/models/CanvasObject";
 
 export class CanvasController {
-  private grid: CanvasGrid;
+  // private grid: CanvasGrid;
 
   constructor(protected canvas: Canvas) {
-    this.grid = new CanvasGrid(canvas.getimensions())
-    this.addObject(this.grid);
+    //Add grid
+    // this.grid = new CanvasGrid(canvas.getimensions())
+    // this.addObject(this.grid);
 
     //Handle Drop
     this.canvas.onDrop$().subscribe((ev: any) => {
-      console.log('onDrop', ev);
       const geoType = ev.dataTransfer?.getData("text") as string;
-      console.log('geoType', geoType);
       const [, , , , offsetX, offsetY] = this.canvas.getViewport()
 
       let newShape: any; 
