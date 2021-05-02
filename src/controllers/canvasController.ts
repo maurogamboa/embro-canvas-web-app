@@ -14,35 +14,35 @@ export class CanvasController {
     // this.addObject(this.grid);
 
     //Handle Drop
-    this.canvas.onDrop$().subscribe((ev: any) => {
-      const geoType = ev.dataTransfer?.getData("text") as string;
-      const [, , , , offsetX, offsetY] = this.canvas.getViewport()
+    // this.canvas.onDrop$().subscribe((ev: any) => {
+    //   const geoType = ev.dataTransfer?.getData("text") as string;
+    //   const [, , , , offsetX, offsetY] = this.canvas.getViewport()
 
-      let newShape: any; 
-      switch (geoType) {
+    //   let newShape: any; 
+    //   switch (geoType) {
         
-        case "shape-circle":
-          newShape = new CanvasCircle({
-            radius: 75,
-            fill: 'red',
-            left: ev.layerX - offsetX,
-            top: ev.layerY - offsetY,
-          });
-          break;
-        case "shape-rect":
-          newShape = new CanvasRect({
-            width: 75,
-            height: 75,
-            fill: 'blue',
-            left: (ev.layerX - offsetX),
-            top: (ev.layerY - offsetY),
-          });
-          break;
-        default:
-          break;
-      }
-      this.addObject(newShape);
-    }); 
+    //     case "shape-circle":
+    //       newShape = new CanvasCircle({
+    //         radius: 75,
+    //         fill: 'red',
+    //         left: ev.layerX - offsetX,
+    //         top: ev.layerY - offsetY,
+    //       });
+    //       break;
+    //     case "shape-rect":
+    //       newShape = new CanvasRect({
+    //         width: 75,
+    //         height: 75,
+    //         fill: 'blue',
+    //         left: (ev.layerX - offsetX),
+    //         top: (ev.layerY - offsetY),
+    //       });
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    //   this.addObject(newShape);
+    // }); 
   }
 
   addObject(obj: ICanvasObject) {

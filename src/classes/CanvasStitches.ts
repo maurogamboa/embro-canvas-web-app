@@ -1,4 +1,5 @@
-import { fabric } from "fabric";
+// import { fabric } from "fabric";
+import paper, { Path, Point, Color } from "paper";
 import { ICanvasObject } from "../core/models/CanvasObject";
 import Stitch, { StitchControl, IsColorControl, getColorIndex } from "../core/models/Stitch";
 import { ICanvasDimensions } from "./Canvas";
@@ -31,12 +32,18 @@ export class CanvasStitches implements ICanvasObject {
     throw new Error("Method not implemented.");
   }
   parseObject() {
+
+    // console.log('parseObject');
+    // let segments = [new Point(30, 30), new Point(50, 100)];
+    // const path = new Path(segments);
+    // path.strokeColor = new Color('black');
+
     const center = {
-      x: this.canvasDimensions.width / 2, //0.0
-      y: this.canvasDimensions.height / 2 //0.0
+      x: paper.view.center.x, //this.canvasDimensions.width / 2, //0.0
+      y: paper.view.center.y //this.canvasDimensions.height / 2 //0.0
     };
 
-    const lines: fabric.Line[] = [];
+    // const lines: fabric.Line[] = [];
     const lineOption = {stroke: this.staticPalette[0], strokeWidth: 1, selectable: false}; //rgba(0,0,0,1)
     const currentPoint = {...center};
     let firstStitch = true;
@@ -54,12 +61,16 @@ export class CanvasStitches implements ICanvasObject {
         if(firstStitch) {
           firstStitch = false;
         } else {
-          lines.push(new fabric.Line([
-            currentPoint.x, 
-            currentPoint.y, 
-            currentPoint.x + stitch.x, 
-            currentPoint.y + -stitch.y
-          ], lineOption));
+          // let segments = [new Point(];
+          let path = new Path.Line(new Point(currentPoint.x, currentPoint.y), new Point(currentPoint.x + stitch.x, currentPoint.y + -stitch.y));
+          path.strokeColor = new Color(this.staticPalette[getColorIndex(stitch.control)]);
+
+          // lines.push(new fabric.Line([
+          //   currentPoint.x, 
+          //   currentPoint.y, 
+          //   currentPoint.x + stitch.x, 
+          //   currentPoint.y + -stitch.y
+          // ], lineOption));
            
         }    
       }
@@ -68,8 +79,8 @@ export class CanvasStitches implements ICanvasObject {
       currentPoint.y = currentPoint.y + -stitch.y;    
     }
 
-    const oGridGroup = new fabric.Group(lines, {left: 0, top: 0, selectable: true, hoverCursor: 'grab'});
-    return oGridGroup;
+    // const oGridGroup = new fabric.Group(lines, {left: 0, top: 0, selectable: true, hoverCursor: 'grab'});
+    // return oGridGroup;
   }
     
 }
